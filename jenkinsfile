@@ -18,12 +18,11 @@ pipeline {
 
         }
        
-        stage('Docker build image') {
+         stage('start container') {
             steps {
-                script {
-                    echo "Docker build image"
-                    sh 'docker compose up'
-                }
+                echo 'start container'
+                sh 'docker-compose up -d --no-build'
+                sh 'docker-compose ps'
             }
         }
         stage('Docker hub push') {
