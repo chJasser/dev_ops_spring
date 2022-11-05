@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo "Docker build image"
-                    sh 'docker build -t fakher14/tpachat -f Dockerfile .'
+                    sh 'docker compose up'
                 }
             }
         }
