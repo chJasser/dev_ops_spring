@@ -11,7 +11,7 @@ public interface IFactureService {
 	List<Facture> getFacturesByFournisseur(Long idFournisseur);
 
 	Facture addFacture(Facture f);
-
+    Facture addFacturewithoutdetail(Facture F);
 	void cancelFacture(Long id);
 
 	Facture retrieveFacture(Long id);
@@ -19,6 +19,8 @@ public interface IFactureService {
 	void assignOperateurToFacture(Long idOperateur, Long idFacture);
 
 	float pourcentageRecouvrement(Date startDate, Date endDate);
+	
+	float pourcentageRecouvrementParFacture(Date startDate, Date endDate,Long id);
 
 	List<Produit>getListProductByfactue(Long idFacture);
 }

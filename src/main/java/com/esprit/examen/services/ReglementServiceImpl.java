@@ -50,4 +50,15 @@ public class ReglementServiceImpl implements IReglementService {
 		return reglementRepository.getChiffreAffaireEntreDeuxDate( startDate, endDate);
 	}
 
+	@Override
+	public float getChiffreAffaireFactureEntreDeuxDate(Date startDate, Date endDate, Long id) {
+		
+		return reglementRepository.getChiffreAffairedefactureEntreDeuxDate(startDate, endDate, id);
+	}
+
+	@Override
+	public void deleteReglement(Long id) {
+		 reglementRepository.deleteById(id);
+	}
+
 }

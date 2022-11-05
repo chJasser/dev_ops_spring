@@ -21,4 +21,7 @@ public interface ReglementRepository extends CrudRepository<Reglement, Long>{
 	@Query("SELECT sum(r.montantPaye) FROM Reglement r where  r.dateReglement between :startDate"
 			+ " and :endDate and r.facture.archivee=false")
 	float getChiffreAffaireEntreDeuxDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+	@Query("SELECT sum(r.montantPaye) FROM Reglement r where  r.dateReglement between :startDate"
+			+ " and :endDate and r.facture.archivee=false and r.facture.idFacture=:idFacture")
+	float getChiffreAffairedefactureEntreDeuxDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate,@Param("idFacture") Long idFacture);
 }

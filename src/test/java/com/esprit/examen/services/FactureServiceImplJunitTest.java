@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 import com.esprit.examen.entities.DetailFacture;
 import com.esprit.examen.entities.Facture;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.DecimalFormat;
 import java.util.*;
-import java.text.SimpleDateFormat;
+
 
 @ExtendWith(SpringExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -105,3 +105,4 @@ import java.text.SimpleDateFormat;
         assertEquals(0,iFactureService.retrieveAllFactures().size());
     }
 }
+*/

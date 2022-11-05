@@ -141,4 +141,19 @@ public class FactureServiceImpl implements IFactureService {
     }
 
 
+	@Override
+	public Facture addFacturewithoutdetail(Facture F) {
+		return factureRepository.save(F);		 
+	}
+
+
+	@Override
+	public float pourcentageRecouvrementParFacture(Date startDate, Date endDate, Long id) {
+		    float totalFactures = factureRepository.getById(id).getMontantFacture();
+	        float totalRecouvrementEntreDeuxDates = reglementService.getChiffreAffaireFactureEntreDeuxDate(startDate, endDate,id);
+	        return (totalRecouvrementEntreDeuxDates / totalFactures) * 100;
+	
+	}
+
+
 }
