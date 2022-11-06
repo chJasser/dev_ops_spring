@@ -14,7 +14,7 @@ services:
     container_name: $SPRING_CONTAINER
     networks:
       - spring-network
-    env_file: ./.env
+    env_file: .env
     ports:
       - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
     environment:
