@@ -15,32 +15,32 @@ services:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - db:/var/lib/mysql
-#  app:
-#    working_dir: /spring-app
-#    depends_on:
-#      - mysqldb
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    image: $REGISTRY:$TAG
-#    restart: on-failure
-#    container_name: $SPRING_CONTAINER
-#    networks:
-#      - spring-network
-#    env_file: ./.env
-#    ports:
-#      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
-#    environment:
-#      SPRING_APPLICATION_JSON: '{
-#        "spring.datasource.url"  : "jdbc:mysql://mysqldb:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&createDatabaseIfNotExists=true",
-#        "spring.datasource.username" : "$MYSQLDB_USER",
-#        "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
-#        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-#        "spring.jpa.hibernate.ddl-auto" : "update"
-#      }'
-#    volumes:
-#      - .m2:/root/maven-repo
-#    stdin_open: true
+  app:
+    working_dir: /spring-app
+    depends_on:
+      - mysqldb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: $REGISTRY:$TAG
+    restart: on-failure
+    container_name: $SPRING_CONTAINER
+    networks:
+      - spring-network
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&createDatabaseIfNotExists=true",
+        "spring.datasource.username" : "$MYSQLDB_USER",
+        "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    volumes:
+      - .m2:/root/maven-repo
+    stdin_open: true
     tty: true
 #    command: mvn test
 

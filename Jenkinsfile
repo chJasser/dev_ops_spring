@@ -4,7 +4,7 @@ pipeline {
         TAG = '1.0'
     }
     stages {
-/*        stage('maven clean') {
+      stage('maven clean') {
             steps {
                 echo 'maven clean'
                 sh 'mvn  clean'
@@ -24,7 +24,7 @@ pipeline {
                     //  sh 'docker build -t tpachatproject -f Dockerfile .'
                 }
             }
-        }*/
+        }
         stage('start container') {
             steps {
                 echo 'start container'
@@ -32,7 +32,7 @@ pipeline {
                 sh 'docker-compose ps'
             }
         }
-    /*   stage('maven test') {
+    stage('maven test') {
             steps {
                 echo 'unit test'
                 sh 'docker exec -i ${SPRING_CONTAINER} mvn test'
@@ -45,7 +45,7 @@ pipeline {
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
 
-        }*/
+        }
 
 
 //        stage('Docker hub push') {
