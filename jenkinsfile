@@ -21,8 +21,8 @@ pipeline {
          stage('start container') {
             steps {
                 echo 'start container'
-                sh 'docker-compose up -d --no-build'
-                sh 'docker-compose ps'
+                sh 'docker-compose up'
+               
             }
         }
         stage('Docker hub push') {
