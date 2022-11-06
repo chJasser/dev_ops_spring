@@ -19,11 +19,11 @@ pipeline {
             }
 
         }
-        stage('Dokcer build image') {
+        stage('Docker build') {
             steps {
                 script {
-                    echo "Dokcer build image"
-                    sh 'docker build -t fakher14/tpachat -f Dockerfile .'
+                    
+                    sh 'docker compose up -d'
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
                     echo "Docker push"
                 withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
                        sh 'docker login -u fakher14 -p ${docker}'
-                        sh 'docker tag  fakher14/tpachat fakher14/tpachat:1.0'
+                        sh 'docker tag  tpachat fakher14/tpachat:1.0'
                        sh 'docker push fakher14/tpachat:1.0'
                        sh 'docker logout'
                    }
