@@ -31,8 +31,8 @@ pipeline {
            steps {
                 script {
                     echo "Docker push"
-                 withCredentials([string(credentialsId: '1234', variable: 'dockerhub')]) {
-                       sh 'docker login -u fakher14 -p ${dockerhub}'
+                withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
+                       sh 'docker login -u fakher14 -p ${docker}'
                        sh 'docker tag  tpachat fakher14/tpachat:1.0'
                        sh 'docker push fakher14/tpachat:1.0'
                        sh 'docker logout'
