@@ -19,18 +19,12 @@ pipeline {
             }
 
         }
-         stage('start container') {
-            steps {
-                echo 'start container'
-                sh 'docker-compose up -d'
-               
-            }
-        }
+        
       stage('build_push_image') {
               steps {
                         script {
                               def dockerImage = docker.build("fakher14/tpachat")
-                              docker.withRegistry('',dockerCredentials){
+                              docker.withRegistry('','tpachat'){
                                          dockerImage.push("latest")
                                }
                           }
