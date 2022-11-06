@@ -57,6 +57,8 @@ services:
       - 'SonarQube_logs:/opt/SonarQube/logs'
     networks:
       - spring-network
+    stdin_open: true
+    tty: true
 #
 #
 #  nexus:
