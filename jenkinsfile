@@ -19,28 +19,18 @@ pipeline {
             }
 
         }
-      stage('Dokcer build image') {
-            steps {
-                script {
-                    echo "Dokcer build image"
-                    sh 'docker build -t fakher14/tpachat -f Dockerfile .'
-                }
-            }
+      stage('build_push_image') {
+              steps {
+                        script {
+                              def dockerImage = docker.build("fakher14/tpachat")
+                              docker.withRegistry('',dockerCredentials){
+                                         dockerImage.push("latest")
+                               }
+                          }
+              }
         }
        
-        stage('Docker push') {
-           steps {
-                script {
-                    echo "Docker push"
-                withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
-                       sh 'docker login -u fakher14 -p ${docker}'
-                        sh 'docker tag  fakher14/tpachat fakher14/tpachat:1.0'
-                       sh 'docker push fakher14/tpachat:1.0'
-                       sh 'docker logout'
-                   }
-               }
-           }
-        }
+       
        
 
 
