@@ -40,7 +40,7 @@ pipeline {
         }*/
         stage('SonarQube analysis') {
             steps{
-                withSonarQubeEnv(installationName:'sonarQubeToken') {
+                withSonarQubeEnv('sonarqube') {
                     sh 'mvn sonar:sonar'
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
