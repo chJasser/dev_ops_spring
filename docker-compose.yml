@@ -1,32 +1,22 @@
-version: "3.7"
+version: "3.8"
 
 services:
   mysqldb:
     image: mysql:5.7
     restart: unless-stopped
-    container_name: mysqldb
-    networks:
-      - spring-network
     env_file: ./.env
     environment:
       - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
-      - 3366:$MYSQLDB_DOCKER_PORT
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - db:/var/lib/mysql
   app:
-    working_dir: /spring-app
     depends_on:
       - mysqldb
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: $REGISTRY
+    build: ./spring-app
     restart: on-failure
-    container_name: $SPRING_CONTAINER
-    networks:
-      - spring-network
     env_file: ./.env
     ports:
       - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
@@ -42,9 +32,7 @@ services:
       - .m2:/var/lib/tpachat
     stdin_open: true
     tty: true
-networks:
-  spring-network:
-    name: spring-network
+
 volumes:
   db:
-  .m2:
+  .m2
