@@ -24,7 +24,7 @@ pipeline {
                     //  sh 'docker build -t tpachatproject -f Dockerfile .'
                 }
             }
-        }*/
+        }
         stage('start container') {
             steps {
                 echo 'start container'
@@ -32,22 +32,20 @@ pipeline {
                 sh 'docker-compose ps'
             }
         }
-/*        stage('maven test') {
+       stage('maven test') {
             steps {
                 echo 'unit test'
                 sh 'docker exec -i ${SPRING_CONTAINER} mvn test'
             }
         }*/
-/*
         stage('SonarQube analysis') {
             steps{
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv(credentialsId: 'sonarQubeToken') {
                     sh 'mvn sonar:sonar'
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
 
         }
-*/
 
 
 //        stage('Docker hub push') {
