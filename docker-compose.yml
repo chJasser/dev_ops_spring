@@ -39,7 +39,7 @@ services:
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     volumes:
-      - .m2:/root/.m2
+      - .m2:/root/repo
     stdin_open: true
     tty: true
 networks:
