@@ -19,11 +19,11 @@ pipeline {
             }
 
         }
-        stage('Docker build') {
+      stage('Dokcer build image') {
             steps {
                 script {
-                    
-                    sh 'docker-compose up -d'
+                    echo "Dokcer build image"
+                    sh 'docker build -t fakher14/tpachat -f Dockerfile .'
                 }
             }
         }
