@@ -4,18 +4,18 @@ pipeline {
         TAG = '1.0'
     }
     stages {
-      stage('maven clean') {
-            steps {
-                echo 'maven clean'
-                sh 'mvn  clean'
-            }
-        }
-        stage('maven test') {
-            steps {
-                echo 'unit test'
-                sh 'mvn test'
-            }
-        }
+//      stage('maven clean') {
+//            steps {
+//                echo 'maven clean'
+//                sh 'mvn  clean'
+//            }
+//        }
+//        stage('maven test') {
+//            steps {
+//                echo 'unit test'
+//                sh 'mvn test'
+//            }
+//        }
         stage('build project') {
             steps {
                 echo "build project"
@@ -39,11 +39,19 @@ pipeline {
             }
         }
 
-        stage('SonarQube analysis') {
+//        stage('SonarQube analysis') {
+//            steps{
+//                withSonarQubeEnv('sonarqube') {
+//                    sh 'mvn  sonar:sonar'
+//                } // submitted SonarQube taskId is automatically attached to the pipeline context
+//            }
+//        }
+
+        stage('deploy to nexus') {
             steps{
-                withSonarQubeEnv('sonarqube') {
-                    sh 'mvn  sonar:sonar'
-                } // submitted SonarQube taskId is automatically attached to the pipeline context
+
+                    sh 'mvn  deploy'
+                 // submitted SonarQube taskId is automatically attached to the pipeline context
             }
         }
 
