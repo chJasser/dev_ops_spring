@@ -19,6 +19,13 @@ pipeline {
             }
 
         }
+         stage('start container') {
+            steps {
+                echo 'start container'
+                sh 'docker-compose up -d'
+               
+            }
+        }
       stage('build_push_image') {
               steps {
                         script {
