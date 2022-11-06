@@ -16,7 +16,7 @@ pipeline {
                 sh 'mvn -Dmaven.test.skip=true   package'
             }
         }
-/*       stage('Dokcer build image') {
+      stage('Dokcer build image') {
             steps {
                 script {
                     echo "Docker build image"
@@ -37,11 +37,11 @@ pipeline {
                 echo 'unit test'
                 sh 'docker exec -i ${SPRING_CONTAINER} mvn test'
             }
-        }*/
+        }
         stage('SonarQube analysis') {
             steps{
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar'
+                    sh 'docker exec -i ${SPRING_CONTAINER} mvn clean install sonar:sonar'
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
 
