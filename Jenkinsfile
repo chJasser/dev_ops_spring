@@ -10,41 +10,41 @@ pipeline {
                 sh 'mvn  clean'
             }
         }
+        stage('maven test') {
+            steps {
+                echo 'unit test'
+                sh 'mvn test'
+            }
+        }
         stage('build project') {
             steps {
                 echo "build project"
                 sh 'mvn -Dmaven.test.skip=true   package'
             }
         }
-      stage('build docker image') {
-            steps {
-                script {
-                    echo "Docker build image"
-                    dockerImage = docker.build("${REGISTRY}:${TAG}")
-                    //  sh 'docker build -t tpachatproject -f Dockerfile .'
-                }
-            }
-        }
-        stage('start container') {
+//      stage('build docker image') {
+//            steps {
+//                script {
+//                    echo "Docker build image"
+//                    dockerImage = docker.build("${REGISTRY}:${TAG}")
+//                    //  sh 'docker build -t tpachatproject -f Dockerfile .'
+//                }
+//            }
+//        }
+        stage('build docker image') {
             steps {
                 echo 'start container'
                 sh 'docker-compose up -d'
                 sh 'docker-compose ps'
             }
         }
-    stage('maven test') {
-            steps {
-                echo 'unit test'
-                sh 'docker exec -i ${SPRING_CONTAINER} mvn test'
-            }
-        }
+
         stage('SonarQube analysis') {
             steps{
                 withSonarQubeEnv('sonarqube') {
-                    sh 'docker exec -i ${SPRING_CONTAINER} mvn  sonar:sonar'
+                    sh 'mvn  sonar:sonar'
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
             }
-
         }
 
 

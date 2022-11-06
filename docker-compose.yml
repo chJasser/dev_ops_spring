@@ -1,20 +1,7 @@
 version: "3.7"
 
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    container_name: mysqldb
-    networks:
-      - spring-network
-    env_file: ./.env
-    environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - MYSQL_DATABASE=$MYSQLDB_DATABASE
-    ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-    volumes:
-      - db:/var/lib/mysql
+
   app:
     working_dir: /spring-app
     depends_on:
@@ -75,6 +62,5 @@ networks:
     name: spring-network
 
 volumes:
-  db:
   .m2:
 
