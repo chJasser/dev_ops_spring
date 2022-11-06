@@ -34,7 +34,7 @@ pipeline {
                     echo "Docker push"
                 withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
                        sh 'docker login -u fakher14 -p ${docker}'
-                        sh 'docker tag  tpachat fakher14/tpachat:1.0'
+                        sh 'docker tag  fakher14/tpachat fakher14/tpachat:1.0'
                        sh 'docker push fakher14/tpachat:1.0'
                        sh 'docker logout'
                    }
