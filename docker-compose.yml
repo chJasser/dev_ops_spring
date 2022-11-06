@@ -22,7 +22,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: $REGISTRY:$TAG
+    image: $REGISTRY
     restart: on-failure
     container_name: $SPRING_CONTAINER
     networks:
@@ -39,9 +39,9 @@ services:
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     volumes:
-      - .m2:/root/.m2
+      - .m2:/var/lib/tpachat
     stdin_open: true
-    tty: true
+    tty: trues
 networks:
   spring-network:
     name: spring-network
