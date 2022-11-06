@@ -39,7 +39,7 @@ services:
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     volumes:
-      - .m2:/root/repo
+      - .m2:/var/lib/tpachat
     stdin_open: true
     tty: true
 networks:
