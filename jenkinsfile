@@ -19,20 +19,22 @@ pipeline {
             }
 
         }
-       
-         stage('start container') {
+        stage('Dokcer build image') {
             steps {
-                echo 'start container'
-                sh 'docker-compose up -d'
-               
+                script {
+                    echo "Dokcer build image"
+                    sh 'docker build -t fakher14/tpachat -f Dockerfile .'
+                }
             }
         }
-        stage('Docker hub push') {
+       
+        stage('Docker push') {
            steps {
                 script {
                     echo "Docker push"
                 withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
                        sh 'docker login -u fakher14 -p ${docker}'
+                        sh 'docker tag  fakher14/tpachat fakher14/tpachat:1.0'
                        sh 'docker push fakher14/tpachat:1.0'
                        sh 'docker logout'
                    }
