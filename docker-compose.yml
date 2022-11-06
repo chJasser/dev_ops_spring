@@ -22,7 +22,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: $REGISTRY:$TAG
+    image: $REGISTRY
     restart: on-failure
     container_name: $SPRING_CONTAINER
     networks:
