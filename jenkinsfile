@@ -8,32 +8,33 @@ pipeline {
        stage('Clean') {
             steps {
                 sh 'mvn clean'
+                sh 'pwd'
             }
         }
-        stage('Build') {
+     /*   stage('Build') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true package'
             }
-        }
+        }*/
 
 
-        stage('install') {
+     /*   stage('install') {
             steps {
                 sh 'mvn  -Dmaven.test.skip=true install '
 
             }
 
         }
-       
-         stage('start container') {
-            steps {
-                echo 'start container'
-                sh 'docker-compose up -d'
+       */
+         //stage('start container') {
+           // steps {
+             //   echo 'start container'
+               // sh 'docker-compose up -d'
                
-            }
-        }
+            //}
+       // }
 
-  stage('build_push_image') {
+/*  stage('build_push_image') {
 
               steps {
                         script {
@@ -43,7 +44,7 @@ pipeline {
                                //}
                           }
               }
-        }
+        }*/
        
       //  stage('Docker hub push') {
         //   steps {
