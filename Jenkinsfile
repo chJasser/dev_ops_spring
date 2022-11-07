@@ -23,12 +23,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('maven test') {
-            steps {
-                echo 'unit test'
-                sh 'mvn clean install'
-            }
-        }
+//        stage('maven install') {
+//            steps {
+//                echo 'unit test'
+//                sh 'mvn clean install'
+//            }
+//        }
 //      stage('build docker image') {
 //            steps {
 //                script {
