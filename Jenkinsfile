@@ -39,25 +39,26 @@ pipeline {
 //                }
 //            }
 //        }
-//        stage('docker build') {
-//            steps {
-//                script {
-//                    echo "Docker build image"
-//                    sh 'docker-compose up -d'
-//                    sh 'docker-compose ps'
-//                }
-//            }
-//        }
-
-        stage('clean install') {
+        stage('docker build') {
             steps {
-
-                    sh 'mvn clean install'
-
+                script {
+                    echo "Docker build image"
+                    sh 'docker-compose up -d'
+                    sh 'docker-compose ps'
+                }
             }
         }
+//
+//        stage('clean install') {
+//            steps {
+//
+//                    sh 'mvn clean install'
+//
+//            }
+//        }
         stage('SonarQube analysis') {
             steps {
+                sh 'mvn clean install'
                 withSonarQubeEnv('sonarqube') {
                     sh 'mvn sonar:sonar'
                 }
