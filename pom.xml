@@ -4,7 +4,7 @@
     <groupId>com.esprit.examen</groupId>
     <artifactId>tpAchatProject</artifactId>
     <name>tpAchatProject</name>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
     <description>tpAchatProject</description>
     <modelVersion>4.0.0</modelVersion>
     <distributionManagement>
@@ -29,11 +29,6 @@
     <properties>
         <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-        <sonar.exclusions>
-            src/main/java/com/**/**/entities/**.java
-            src/main/java/com/**/**/controllers/**.java
-            src/main/java/com/**/**/repositories/**.java
-        </sonar.exclusions>
     </properties>
 
     <dependencies>
