@@ -32,21 +32,21 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('docker build') {
-            steps {
-                script {
-                    echo "Docker build image"
-                    sh 'docker-compose up -d'
-                    sh 'docker-compose ps'
-                }
-            }
-        }
+//        stage('docker build') {
+//            steps {
+//                script {
+//                    echo "Docker build image"
+//                    sh 'docker-compose up -d'
+//                    sh 'docker-compose ps'
+//                }
+//            }
+//        }
 
 
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn  -Dmaven.test.skip=true sonar:sonar'
+                    sh 'mvn   sonar:sonar'
                 }
             }
         }
