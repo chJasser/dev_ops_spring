@@ -4,19 +4,19 @@ pipeline {
         TAG = '1.0'
     }
     stages {
-        stage('maven clean') {
-            steps {
-                echo 'maven clean'
-                sh 'mvn  clean'
-            }
-        }
-
-        stage('maven build') {
-            steps {
-                echo "build project"
-                sh 'mvn -Dmaven.test.skip=true   package'
-            }
-        }
+//        stage('maven clean') {
+//            steps {
+//                echo 'maven clean'
+//                sh 'mvn  clean'
+//            }
+//        }
+//
+//        stage('maven build') {
+//            steps {
+//                echo "build project"
+//                sh 'mvn -Dmaven.test.skip=true   package'
+//            }
+//        }
         stage('maven test') {
             steps {
                 echo 'unit test'
