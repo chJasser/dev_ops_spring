@@ -10,16 +10,17 @@ pipeline {
                 sh 'mvn  clean'
             }
         }
+
+        stage('maven build') {
+            steps {
+                echo "build project"
+                sh 'mvn -Dmaven.test.skip=true   package'
+            }
+        }
         stage('maven test') {
             steps {
                 echo 'unit test'
                 sh 'mvn test'
-            }
-        }
-        stage('build project') {
-            steps {
-                echo "build project"
-                sh 'mvn -Dmaven.test.skip=true   package'
             }
         }
 //      stage('build docker image') {
@@ -31,11 +32,10 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('build docker image') {
+        stage('docker build') {
             steps {
                 script {
                     echo "Docker build image"
-                    dockerImage = docker.build("${REGISTRY}:${TAG}")
                     sh 'docker-compose up -d'
                     sh 'docker-compose ps'
                 }
@@ -46,14 +46,13 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh 'mvn  -Dmaven.test.skip=true sonar:sonar'
-                } // submitted SonarQube taskId is automatically attached to the pipeline context
+                }
             }
         }
 
         stage('deploy to nexus') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true deploy'
-                // submitted SonarQube taskId is automatically attached to the pipeline context
             }
         }
 
@@ -68,22 +67,22 @@ pipeline {
                     echo "Docker push"
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                         sh 'docker login -u chjasser -p ${dockerhubpwd}'
-                        dockerImage.push()
-//                        sh 'docker push ${REGISTRY}:${TAG}'
+//                        dockerImage.push()
+                        sh 'docker push ${REGISTRY}:${TAG}'
                         sh 'docker logout'
                     }
                 }
             }
         }
 
-        stage('Docker pull') {
+        stage('Docker hub pull') {
             steps {
                 script {
                     echo "Docker pull"
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                         sh 'docker login -u chjasser -p ${dockerhubpwd}'
-                        dockerImage.pull()
-//                        sh 'docker pull ${REGISTRY}:${TAG}'
+//                        dockerImage.pull()
+                        sh 'docker pull ${REGISTRY}:${TAG}'
                         sh 'docker logout'
                     }
 
