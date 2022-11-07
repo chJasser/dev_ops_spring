@@ -4,7 +4,7 @@ pipeline {
         TAG = '1.0'
     }
     stages {
-      stage('maven clean') {
+        stage('maven clean') {
             steps {
                 echo 'maven clean'
                 sh 'mvn  clean'
@@ -33,14 +33,15 @@ pipeline {
 //        }
         stage('build docker image') {
             steps {
-                echo 'start container'
+                echo "Docker build image"
+                dockerImage = docker.build("${REGISTRY}:${TAG}")
                 sh 'docker-compose up -d'
                 sh 'docker-compose ps'
             }
         }
 
         stage('SonarQube analysis') {
-            steps{
+            steps {
                 withSonarQubeEnv('sonarqube') {
                     sh 'mvn  -Dmaven.test.skip=true sonar:sonar'
                 } // submitted SonarQube taskId is automatically attached to the pipeline context
@@ -126,16 +127,16 @@ pipeline {
 
 
     }
-        post {
-            failure {
-                emailext to: "cjasser40@gmail.com",
-                        subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                        body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
-                        attachLog: true,
-                        compressLog: true,
-                        recipientProviders: [buildUser(), developers(), brokenBuildSuspects()]
-            }
-
-
+    post {
+        failure {
+            emailext to: "cjasser40@gmail.com",
+                    subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                    body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
+                    attachLog: true,
+                    compressLog: true,
+                    recipientProviders: [buildUser(), developers(), brokenBuildSuspects()]
         }
+
+
+    }
 }
