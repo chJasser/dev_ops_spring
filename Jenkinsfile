@@ -33,10 +33,12 @@ pipeline {
 //        }
         stage('build docker image') {
             steps {
-                echo "Docker build image"
-                dockerImage = docker.build("${REGISTRY}:${TAG}")
-                sh 'docker-compose up -d'
-                sh 'docker-compose ps'
+                script {
+                    echo "Docker build image"
+                    dockerImage = docker.build("${REGISTRY}:${TAG}")
+                    sh 'docker-compose up -d'
+                    sh 'docker-compose ps'
+                }
             }
         }
 
