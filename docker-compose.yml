@@ -63,6 +63,7 @@ services:
       - app
     networks:
       - spring-network
+    restart: on-failure
 
 
   grafana:
