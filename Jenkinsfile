@@ -49,13 +49,13 @@ pipeline {
 //            }
 //        }
 
-        stage('clean install') {
-            steps {
-
-                    sh 'mvn clean install'
-
-            }
-        }
+//        stage('clean install') {
+//            steps {
+//
+//                    sh 'mvn clean install'
+//
+//            }
+//        }
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
