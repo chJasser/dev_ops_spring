@@ -11,21 +11,27 @@ pipeline {
                 sh 'pwd'
             }
         }
-     /*   stage('Build') {
+       stage('Build') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true package'
             }
-        }*/
+        }
 
 
-     /*   stage('install') {
+     stage('install') {
             steps {
                 sh 'mvn  -Dmaven.test.skip=true install '
 
             }
 
         }
-       */
+        stage('Junittest_Mocito') {
+            steps {
+                sh 'mvn test'
+
+            }
+
+        }
          //stage('start container') {
            // steps {
              //   echo 'start container'
@@ -33,18 +39,19 @@ pipeline {
                
             //}
        // }
+    
+    
+  //stage('build_push_image') {
 
-/*  stage('build_push_image') {
-
-              steps {
-                        script {
-                              def dockerImage = docker.build("fakher14/tpachat")
+         //     steps {
+           //             script {
+             //                 def dockerImage = docker.build("fakher14/tpachat")
                             //  docker.withRegistry('','registryCredential'){
                               //           dockerImage.push("latest")
                                //}
-                          }
-              }
-        }*/
+               //           }
+              //}
+        
        
       //  stage('Docker hub push') {
         //   steps {
