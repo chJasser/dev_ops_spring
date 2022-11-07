@@ -12,6 +12,12 @@ pipeline {
 //            }
 //        }
 
+        stage('maven clean') {
+            steps {
+                echo 'maven clean'
+            }
+        }
+
 //        stage('maven build') {
 //            steps {
 //                echo "build project"
@@ -39,15 +45,15 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('docker build ') {
-            steps {
-                script {
-                    echo "Docker build image"
-                    sh 'docker-compose up -d'
-                    sh 'docker-compose ps'
-                }
-            }
-        }
+//        stage('docker build ') {
+//            steps {
+//                script {
+//                    echo "Docker build image"
+//                    sh 'docker-compose up -d'
+//                    sh 'docker-compose ps'
+//                }
+//            }
+//        }
 //
 //        stage('clean install') {
 //            steps {
