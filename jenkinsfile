@@ -24,9 +24,9 @@ pipeline {
               steps {
                         script {
                               def dockerImage = docker.build("fakher14/tpachat")
-                              docker.withRegistry('','registryCredential'){
-                                         dockerImage.push("latest")
-                               }
+                            //  docker.withRegistry('','registryCredential'){
+                              //           dockerImage.push("latest")
+                               //}
                           }
               }
         }
