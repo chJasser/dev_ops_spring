@@ -5,7 +5,7 @@ pipeline {
     }
     stages {
       
-         stage('Clean') {
+       stage('Clean') {
             steps {
                 sh 'mvn clean'
             }
@@ -24,8 +24,17 @@ pipeline {
             }
 
         }
-        
-      stage('build_push_image') {
+       
+         stage('start container') {
+            steps {
+                echo 'start container'
+                sh 'docker-compose up -d'
+               
+            }
+        }
+
+  stage('build_push_image') {
+
               steps {
                         script {
                               def dockerImage = docker.build("fakher14/tpachat")
@@ -36,7 +45,18 @@ pipeline {
               }
         }
        
-       
+      //  stage('Docker hub push') {
+        //   steps {
+          //      script {
+            //        echo "Docker push"
+              //  withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
+                //       sh 'docker login -u fakher14 -p ${docker}'
+                  //     sh 'docker push fakher14/tpachat:latest'
+                    //   sh 'docker logout'
+               //    }
+              // }
+         //  }
+      //  }
        
 
 
