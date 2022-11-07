@@ -4,13 +4,14 @@ pipeline {
         TAG = '1.0'
     }
     stages {
-//        stage('maven clean') {
-//            steps {
-//                echo 'maven clean'
-//                sh 'mvn  clean'
-//            }
-//        }
-//
+
+        stage('maven clean') {
+            steps {
+                echo 'maven clean'
+                sh 'mvn  clean'
+            }
+        }
+
 //        stage('maven build') {
 //            steps {
 //                echo "build project"
@@ -52,7 +53,7 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn  sonar:sonar'
+                    sh 'mvn sonar:sonar -Pcoverage'
                 }
             }
         }
