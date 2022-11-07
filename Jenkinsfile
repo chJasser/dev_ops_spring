@@ -51,9 +51,9 @@ pipeline {
 
         stage('clean install') {
             steps {
-                withSonarQubeEnv('clean install') {
+
                     sh 'mvn clean install'
-                }
+
             }
         }
         stage('SonarQube analysis') {
