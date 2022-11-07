@@ -49,7 +49,6 @@ pipeline {
 
         stage('deploy to nexus') {
             steps{
-
                     sh 'mvn  deploy'
                  // submitted SonarQube taskId is automatically attached to the pipeline context
             }
