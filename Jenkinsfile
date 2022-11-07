@@ -49,11 +49,17 @@ pipeline {
 //            }
 //        }
 
-
+        stage('clean install') {
+            steps {
+                withSonarQubeEnv('clean install') {
+                    sh 'mvn clean install'
+                }
+            }
+        }
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar -Pcoverage'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
