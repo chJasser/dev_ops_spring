@@ -23,6 +23,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('maven test') {
+            steps {
+                echo 'unit test'
+                sh 'mvn clean install'
+            }
+        }
 //      stage('build docker image') {
 //            steps {
 //                script {
@@ -46,7 +52,7 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn   sonar:sonar'
+                    sh 'mvn  sonar:sonar'
                 }
             }
         }
