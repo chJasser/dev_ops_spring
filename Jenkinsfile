@@ -5,27 +5,27 @@ pipeline {
     }
     stages {
 
-        stage('maven clean') {
-            steps {
-                echo 'maven clean'
-                sh 'mvn  clean'
-            }
-        }
+//        stage('maven clean') {
+//            steps {
+//                echo 'maven clean'
+//                sh 'mvn  clean'
+//            }
+//        }
 
 
 
-        stage('maven build') {
-            steps {
-                echo "build project"
-                sh 'mvn -Dmaven.test.skip=true   package'
-            }
-        }
-        stage('maven test') {
-            steps {
-                echo 'unit test'
-                sh 'mvn test'
-            }
-        }
+//        stage('maven build') {
+//            steps {
+//                echo "build project"
+//                sh 'mvn -Dmaven.test.skip=true   package'
+//            }
+//        }
+//        stage('maven test') {
+//            steps {
+//                echo 'unit test'
+//                sh 'mvn test'
+//            }
+//        }
 //        stage('maven install') {
 //            steps {
 //                echo 'unit test'
@@ -41,15 +41,15 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('docker build ') {
-            steps {
-                script {
-                    echo "Docker build image"
-                    sh 'docker-compose up -d'
-                    sh 'docker-compose ps'
-                }
-            }
-        }
+//        stage('docker build ') {
+//            steps {
+//                script {
+//                    echo "Docker build image"
+//                    sh 'docker-compose up -d'
+//                    sh 'docker-compose ps'
+//                }
+//            }
+//        }
 //
 //        stage('clean install') {
 //            steps {
@@ -62,7 +62,7 @@ pipeline {
             steps {
 //                sh 'mvn clean install'
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn clean install sonar:sonar'
                 }
             }
         }
