@@ -26,7 +26,7 @@ public class SecteurActiviteServiceImpl implements ISecteurActiviteService{
 	@Override
 	public void deleteSecteurActivite(Long id) {
 		secteurActiviteRepository.deleteById(id);
-		
+
 	}
 
 	@Override

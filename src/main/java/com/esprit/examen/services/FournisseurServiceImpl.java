@@ -43,11 +43,11 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		DetailFournisseur df= new DetailFournisseur();//Slave
 		df.setDateDebutCollaboration(new Date()); //util
 		//On affecte le "Slave" au "Master"
-		f.setDetailFournisseur(df);	
+		f.setDetailFournisseur(df);
 		fournisseurRepository.save(f);
 		return f;
 	}
-	
+
 	private DetailFournisseur  saveDetailFournisseur(Fournisseur f){
 		DetailFournisseur df = f.getDetailFournisseur();
 		detailFournisseurRepository.save(df);
@@ -56,7 +56,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 
 	public Fournisseur updateFournisseur(Fournisseur f) {
 		DetailFournisseur df = saveDetailFournisseur(f);
-		f.setDetailFournisseur(df);	
+		f.setDetailFournisseur(df);
 		fournisseurRepository.save(f);
 		return f;
 	}
@@ -80,10 +80,6 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
         fournisseur.getSecteurActivites().add(secteurActivite);
         fournisseurRepository.save(fournisseur);
-		
-		
 	}
-
-	
 
 }
