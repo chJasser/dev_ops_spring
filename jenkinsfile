@@ -25,7 +25,7 @@ pipeline {
             }
 
         }
-        stage('Junittest_Mocito') {
+        stage('Junittest_Mockito') {
             steps {
                 sh 'mvn test'
 
