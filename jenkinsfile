@@ -8,42 +8,50 @@ pipeline {
        stage('Clean') {
             steps {
                 sh 'mvn clean'
+                sh 'pwd'
             }
         }
-        stage('Build') {
+       stage('Build') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true package'
             }
         }
 
 
-        stage('install') {
+     stage('install') {
             steps {
                 sh 'mvn  -Dmaven.test.skip=true install '
 
             }
 
         }
-       
-         stage('start container') {
+        stage('Junittest_Mockito') {
             steps {
-                echo 'start container'
-                sh 'docker-compose up -d'
-               
+                sh 'mvn test'
+
             }
+
         }
+         //stage('start container') {
+           // steps {
+             //   echo 'start container'
+               // sh 'docker-compose up -d'
+               
+            //}
+       // }
+    
+    
+  //stage('build_push_image') {
 
-  stage('build_push_image') {
-
-              steps {
-                        script {
-                              def dockerImage = docker.build("fakher14/tpachat")
+         //     steps {
+           //             script {
+             //                 def dockerImage = docker.build("fakher14/tpachat")
                             //  docker.withRegistry('','registryCredential'){
                               //           dockerImage.push("latest")
                                //}
-                          }
-              }
-        }
+               //           }
+              //}
+        
        
       //  stage('Docker hub push') {
         //   steps {
