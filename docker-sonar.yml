@@ -8,8 +8,7 @@ services:
       - bored-network
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=root
-      - MYSQL_DATABASE=devops
+      - MYSQL_DATABASE=tpachat
     ports:
       - "3306:3306"
     restart: always
