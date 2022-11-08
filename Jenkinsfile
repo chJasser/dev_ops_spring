@@ -20,10 +20,10 @@ pipeline {
             }
         }
 
-        stage('maven install') {
+        stage('maven test') {
             steps {
                 echo 'unit test'
-                sh 'mvn clean install'
+                sh 'mvn test'
             }
         }
         stage('SonarQube analysis') {
