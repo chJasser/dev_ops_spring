@@ -44,7 +44,7 @@ services:
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
-      - dbSpring:/var/lib/mysqlspring
+      - tpstockdb:/var/lib/mysql
 
 #  prometheus:
 #    image: prom/prometheus
@@ -81,5 +81,5 @@ networks:
 
 volumes:
   .m2:
-  dbSpring:
-  prometheus_data: { }
+  tpstockdb:
+#  prometheus_data: { }
