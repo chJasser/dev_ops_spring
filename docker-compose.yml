@@ -50,7 +50,7 @@ services:
     image: prom/prometheus
     volumes:
       - ./config/:/etc/prometheus
-#      - ./data-prometheus:/data
+      - ./data/prometheus:/data
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
