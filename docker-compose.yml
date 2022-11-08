@@ -52,7 +52,7 @@ services:
       image: docker.io/prom/prometheus:latest
       volumes:
         - /home/vagrant/data/prometheus.yml:/etc/prometheus
-        - ./data/prometheus:/data
+#        - ./data/prometheus:/data
       command:
         - '--config.file=/etc/prometheus/prometheus.yml'
         - '--storage.tsdb.path=/prometheus'
