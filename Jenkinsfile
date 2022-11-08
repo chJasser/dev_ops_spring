@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        TAG = '1.0'
+        TAG = '1.1'
     }
     stages {
 
@@ -20,10 +20,10 @@ pipeline {
             }
         }
 
-        stage('maven install') {
+        stage('maven test') {
             steps {
                 echo 'unit test'
-                sh 'mvn clean install'
+                sh 'mvn test'
             }
         }
         stage('SonarQube analysis') {
@@ -39,15 +39,28 @@ pipeline {
                 sh 'mvn -Dmaven.test.skip=true deploy'
             }
         }
-//      stage('build docker image') {
-//            steps {
-//                script {
-//                    echo "Docker build image"
-//                    dockerImage = docker.build("${REGISTRY}:${TAG}")
-//                    //  sh 'docker build -t tpachatproject -f Dockerfile .'
-//                }
-//            }
-//        }
+      stage('build docker image') {
+            steps {
+                script {
+                    echo "Docker build image"
+                    dockerImage = docker.build("${REGISTRY}:${TAG}")
+                    //  sh 'docker build -t tpachatproject -f Dockerfile .'
+                }
+            }
+        }
+        stage('Docker hub push') {
+          steps {
+              script {
+                  echo "Docker push"
+                  withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                      sh 'docker login -u chjasser -p ${dockerhubpwd}'
+//                        dockerImage.push()
+                      sh 'docker push ${REGISTRY}:${TAG}'
+                      sh 'docker logout'
+                  }
+              }
+          }
+      }
         stage('docker build ') {
             steps {
                 script {
@@ -71,20 +84,8 @@ pipeline {
 
 
 
-/*        stage('Docker hub push') {
-            steps {
-                script {
-                    echo "Docker push"
-                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                        sh 'docker login -u chjasser -p ${dockerhubpwd}'
-//                        dockerImage.push()
-                        sh 'docker push ${REGISTRY}:${TAG}'
-                        sh 'docker logout'
-                    }
-                }
-            }
-        }
 
+/*
         stage('Docker hub pull') {
             steps {
                 script {
