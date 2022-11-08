@@ -5,33 +5,40 @@ pipeline {
     }
     stages {
 
-//        stage('maven clean') {
-//            steps {
-//                echo 'maven clean'
-//                sh 'mvn  clean'
-//            }
-//        }
+        stage('maven clean') {
+            steps {
+                echo 'maven clean'
+                sh 'mvn  clean'
+            }
+        }
 
 
+        stage('maven build') {
+            steps {
+                echo "build project"
+                sh 'mvn -Dmaven.test.skip=true   package'
+            }
+        }
 
-//        stage('maven build') {
-//            steps {
-//                echo "build project"
-//                sh 'mvn -Dmaven.test.skip=true   package'
-//            }
-//        }
-//        stage('maven test') {
-//            steps {
-//                echo 'unit test'
-//                sh 'mvn test'
-//            }
-//        }
-//        stage('maven install') {
-//            steps {
-//                echo 'unit test'
-//                sh 'mvn clean install'
-//            }
-//        }
+        stage('maven install') {
+            steps {
+                echo 'unit test'
+                sh 'mvn clean install'
+            }
+        }
+        stage('SonarQube analysis') {
+            steps {
+
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn  sonar:sonar'
+                }
+            }
+        }
+        stage('deploy to nexus') {
+            steps {
+                sh 'mvn -Dmaven.test.skip=true deploy'
+            }
+        }
 //      stage('build docker image') {
 //            steps {
 //                script {
@@ -41,15 +48,15 @@ pipeline {
 //                }
 //            }
 //        }
-//        stage('docker build ') {
-//            steps {
-//                script {
-//                    echo "Docker build image"
-//                    sh 'docker-compose up -d'
-//                    sh 'docker-compose ps'
-//                }
-//            }
-//        }
+        stage('docker build ') {
+            steps {
+                script {
+                    echo "Docker build image"
+                    sh 'docker-compose up -d'
+                    sh 'docker-compose ps'
+                }
+            }
+        }
 //
 //        stage('clean install') {
 //            steps {
@@ -58,20 +65,10 @@ pipeline {
 //
 //            }
 //        }
-        stage('SonarQube analysis') {
-            steps {
-//                sh 'mvn clean install'
-                withSonarQubeEnv('sonarqube') {
-                    sh 'mvn clean install sonar:sonar'
-                }
-            }
-        }
 
-        stage('deploy to nexus') {
-            steps {
-                sh 'mvn -Dmaven.test.skip=true deploy'
-            }
-        }
+
+
+
 
 
 /*        stage('Docker hub push') {
