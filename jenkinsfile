@@ -24,7 +24,14 @@ pipeline {
             }
 
         }
-       stage('nexus_Stage') {
+        stage('test') {
+            steps {
+                sh 'mvn test'
+
+            }
+
+        }
+       /*stage('nexus_Stage') {
                            	steps{
                     	   	     sh '''
                                     mvn clean deploy -Dmaven.test.skip=true
@@ -32,16 +39,16 @@ pipeline {
 
                     	   	}
 
-                       }
-         stage('start container') {
+                       }*/
+       /*  stage('start container') {
             steps {
                 echo 'start container'
                 sh 'docker-compose up -d'
                
             }
-        }
+        }*/
 
-  stage('build_push_image') {
+ /* stage('build_push_image') {
 
               steps {
                         script {
@@ -51,7 +58,7 @@ pipeline {
                                //}
                           }
               }
-        }
+        }*/
        
       //  stage('Docker hub push') {
         //   steps {
