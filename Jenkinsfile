@@ -44,9 +44,10 @@ pipeline {
         stage('docker build ') {
             steps {
                 script {
-                    echo "Docker build image"
-                    sh 'docker-compose up -d'
-                    sh 'docker-compose ps'
+                    sh 'docker run -d -p 9090:9090 -v ./config/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus'
+//                    echo "Docker build image"
+//                    sh 'docker-compose up -d'
+//                    sh 'docker-compose ps'
                 }
             }
         }
