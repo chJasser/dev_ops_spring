@@ -51,7 +51,7 @@ services:
       container_name: prometheus
       image: docker.io/prom/prometheus:latest
       volumes:
-        - /home/vagrant/data:/prometheus:z
+        - /home/vagrant/data/prometheus.yml:/etc/prometheus
         - ./data/prometheus:/data
       command:
         - '--config.file=/etc/prometheus/prometheus.yml'
