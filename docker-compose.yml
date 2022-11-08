@@ -82,4 +82,4 @@ networks:
 volumes:
   .m2:
   dbSpring:
-#  prometheus_data: { }
+  prometheus_data: { }
