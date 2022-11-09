@@ -41,7 +41,7 @@ pipeline {
                  '''
             }
         }
-        stage('sonar') {
+ /*       stage('sonar') {
             steps{
             	 sh '''
                  mvn sonar:sonar -Dsonar.login=${SONAR_LOGIN} -Dsonar.password=${SONAR_PWD}
@@ -105,7 +105,7 @@ pipeline {
 
           }
 
-
+*/
 
  //stages end
    }
