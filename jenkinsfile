@@ -31,11 +31,17 @@ pipeline {
             }
 
         }
+       stage('sonar') {
+            steps{
+            	 sh '''
+                 mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
+                 '''
+            	 }
+        }
        stage('nexus_Stage') {
                            	steps{
-                    	   	     sh '''
-                                    mvn deploy -Dmaven.test.skip=true
-                                   '''
+                    	   	     sh 'mvn -Dmaven.test.skip=true deploy'
+                                   
 
                     	   	}
 

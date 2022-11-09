@@ -49,8 +49,8 @@ public class FactureServiceImpl implements IFactureService {
     }
 
 
-    public Facture addFacture(Facture f) {
-        return addDetailsFacture(factureRepository.save(f), f.getDetailsFacture());
+    public Facture addFacture(Facture facture) {
+        return addDetailsFacture(factureRepository.save(facture), facture.getDetailsFacture());
     }
 
     /*
@@ -142,8 +142,8 @@ public class FactureServiceImpl implements IFactureService {
 
 
 	@Override
-	public Facture addFacturewithoutdetail(Facture F) {
-		return factureRepository.save(F);		 
+	public Facture addFacturewithoutdetail(Facture facture) {
+		return factureRepository.save(facture);		 
 	}
 
 

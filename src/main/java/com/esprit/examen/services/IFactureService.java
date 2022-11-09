@@ -10,8 +10,8 @@ public interface IFactureService {
 
 	List<Facture> getFacturesByFournisseur(Long idFournisseur);
 
-	Facture addFacture(Facture f);
-    Facture addFacturewithoutdetail(Facture F);
+	Facture addFacture(Facture facture);
+    Facture addFacturewithoutdetail(Facture facture);
 	void cancelFacture(Long id);
 
 	Facture retrieveFacture(Long id);
