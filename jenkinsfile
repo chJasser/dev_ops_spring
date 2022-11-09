@@ -24,20 +24,20 @@ pipeline {
             }
 
         }
-        stage('JUNIT/MOCKITO') {
+        /*stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
             }
 
-        }
-       stage('sonar') {
+        }*/
+      /* stage('sonar') {
             steps{
             	 sh '''
                  mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
                  '''
             	 }
-        }
+        }*/
       /* stage('nexus_Stage') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
