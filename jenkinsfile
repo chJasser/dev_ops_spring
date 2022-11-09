@@ -34,7 +34,7 @@ pipeline {
        stage('nexus_Stage') {
                            	steps{
                     	   	     sh '''
-                                    mvn deploy -Dmaven.test.skip=true
+                                    mvn clean deploy -Dmaven.test.skip=true
                                    '''
 
                     	   	}
