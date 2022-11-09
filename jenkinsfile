@@ -31,15 +31,13 @@ pipeline {
             }
 
         }
-        stage('SonarQube') {
-            steps {
-
-                withSonarQubeEnv('sonarCredentials') {
-                    sh 'mvn  sonar:sonar'
-                }
-            }
+       stage('sonar') {
+            steps{
+            	 sh '''
+                 mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
+                 '''
+            	 }
         }
-
        stage('nexus_Stage') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
