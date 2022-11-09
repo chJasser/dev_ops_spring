@@ -15,14 +15,14 @@ services:
     volumes:
       - db:/var/lib/mysql
 
-  angular-app:
-    image: alaabenfradj/front:latest
-    depends_on:
-      - tpachat
-    networks:
-      - bored-network
-    ports:
-      - "4200:4200"
+#  angular-app:
+#    image: alaabenfradj/front:latest
+#    depends_on:
+#      - tpachat
+#    networks:
+#      - bored-network
+#    ports:
+#      - "4200:4200"
 
   tpachat:
     depends_on:

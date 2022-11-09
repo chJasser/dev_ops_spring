@@ -13,7 +13,7 @@ pipeline {
         SONAR_PWD="alaa"
     }
     stages {
-    	/* stage('clean'){
+    	 stage('clean'){
     	   	steps{
     	   	     sh '''
                  mvn clean
@@ -85,7 +85,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('build_push_image') {
               steps {
                         script {
