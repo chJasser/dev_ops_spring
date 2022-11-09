@@ -41,7 +41,7 @@ pipeline {
                  '''
             }
         }
- /*       stage('sonar') {
+        stage('sonar') {
             steps{
             	 sh '''
 
@@ -106,7 +106,7 @@ pipeline {
 
           }
 
-*/
+
 
  //stages end
    }
