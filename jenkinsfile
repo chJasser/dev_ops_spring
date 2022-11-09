@@ -60,13 +60,13 @@ pipeline {
               }
         }
        
-        /*  stage('start container') {
+          stage('Docker-compose') {
             steps {
                 echo 'start container'
                 sh 'docker-compose up -d'
                
             }
-        }*/
+        }
       //  stage('Docker hub push') {
         //   steps {
           //      script {
