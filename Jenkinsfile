@@ -20,7 +20,7 @@ pipeline {
                 '''
     	   	}
     	}
-    	stage('test'){
+ /*   	stage('test'){
     	   	steps{
     	   	     sh '''
                  mvn test
@@ -85,7 +85,7 @@ pipeline {
                 }
             }
         }
-/*
+
         stage('build_push_image') {
               steps {
                         script {
