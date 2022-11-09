@@ -140,8 +140,8 @@
 <!-- nexus repo  -->
 	<distributionManagement>
 		<repository>
-			<id>fakher</id>
-			<url>http://192.168.1.46:8081/repository/maven-releases</url>
+			<id>maven-releases</id>
+			<url>http://192.168.1.104:8081/repository/maven-releases</url>
 		</repository>
 	</distributionManagement>
 </project>
