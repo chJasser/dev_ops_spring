@@ -31,15 +31,15 @@ pipeline {
             }
 
         }
-       /*stage('nexus_Stage') {
+       stage('nexus_Stage') {
                            	steps{
                     	   	     sh '''
-                                    mvn clean deploy -Dmaven.test.skip=true
+                                    mvn deploy -Dmaven.test.skip=true
                                    '''
 
                     	   	}
 
-                       }*/
+                       }
        /*  stage('start container') {
             steps {
                 echo 'start container'
