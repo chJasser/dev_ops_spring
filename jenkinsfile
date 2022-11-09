@@ -24,7 +24,7 @@ pipeline {
             }
 
         }
-        stage('test') {
+        stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
@@ -46,15 +46,9 @@ pipeline {
                     	   	}
 
                        }*/
-       /*  stage('start container') {
-            steps {
-                echo 'start container'
-                sh 'docker-compose up -d'
-               
-            }
-        }*/
+     
 
- /* stage('build_push_image') {
+  stage('build_push_image') {
 
               steps {
                         script {
@@ -64,8 +58,15 @@ pipeline {
                                //}
                           }
               }
-        }*/
+        }
        
+        /*  stage('start container') {
+            steps {
+                echo 'start container'
+                sh 'docker-compose up -d'
+               
+            }
+        }*/
       //  stage('Docker hub push') {
         //   steps {
           //      script {
