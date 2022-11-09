@@ -38,14 +38,14 @@ pipeline {
                  '''
             	 }
         }
-       stage('nexus_Stage') {
+      /* stage('nexus_Stage') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
                                    
 
                     	   	}
 
-                       }
+                       }*/
        /*  stage('start container') {
             steps {
                 echo 'start container'
