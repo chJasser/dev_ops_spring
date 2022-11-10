@@ -29,8 +29,8 @@ public class FournisseurRestController {
 	@GetMapping("/retrieve-all-fournisseurs")
 	@ResponseBody
 	public List<Fournisseur> getFournisseurs() {
-		List<Fournisseur> fournisseurs = fournisseurService.retrieveAllFournisseurs();
-		return fournisseurs;
+		
+		return fournisseurService.retrieveAllFournisseurs();
 	}
 
 	// http://localhost:8089/SpringMVC/fournisseur/retrieve-fournisseur/8
@@ -43,12 +43,11 @@ public class FournisseurRestController {
 	// http://localhost:8089/SpringMVC/fournisseur/add-fournisseur
 	@PostMapping("/add-fournisseur")
 	@ResponseBody
-	public Fournisseur addFournisseur(@RequestBody Fournisseur f) {
-		Fournisseur fournisseur = fournisseurService.addFournisseur(f);
-		return fournisseur;
+	public Fournisseur addFournisseur(@RequestBody Fournisseur fournisseur) {
+		return fournisseurService.addFournisseur(fournisseur);
 	}
 
-	// http://localhost:8089/SpringMVC/fournisseur/remove-fournisseur/{fournisseur-id}
+	
 	@DeleteMapping("/remove-fournisseur/{fournisseur-id}")
 	@ResponseBody
 	public void removeFournisseur(@PathVariable("fournisseur-id") Long fournisseurId) {

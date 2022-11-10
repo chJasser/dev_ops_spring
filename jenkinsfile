@@ -24,60 +24,52 @@ pipeline {
             }
 
         }
-        stage('test') {
+     /*   stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
             }
 
-        }
+        }*/
        stage('sonar') {
             steps{
             	 sh '''
+                 mvn  -Dmaven.test.skip=true install 
                  mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
                  '''
             	 }
-        }
-       stage('nexus_Stage') {
+        
+      /* stage('Nexus') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
                                    
 
                     	   	}
 
-                       }
-       /*  stage('start container') {
-            steps {
-                echo 'start container'
-                sh 'docker-compose up -d'
-               
-            }
-        }*/
+                    }*/
+     
 
- /* stage('build_push_image') {
+ /* stage('buildimage/pushdockerhub') {
 
               steps {
                         script {
                               def dockerImage = docker.build("fakher14/tpachat")
-                            //  docker.withRegistry('','registryCredential'){
-                              //           dockerImage.push("latest")
-                               //}
+                              docker.withRegistry('','registryCredential'){
+                                       dockerImage.push("latest")
+                               }
+                              sh 'docker logout'    
                           }
               }
         }*/
        
-      //  stage('Docker hub push') {
-        //   steps {
-          //      script {
-            //        echo "Docker push"
-              //  withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
-                //       sh 'docker login -u fakher14 -p ${docker}'
-                  //     sh 'docker push fakher14/tpachat:latest'
-                    //   sh 'docker logout'
-               //    }
-              // }
-         //  }
-      //  }
+      /*    stage('Docker-compose') {
+            steps {
+                echo 'start container'
+                sh 'docker-compose up'
+               
+            }
+        }*/
+    
        
 
 
