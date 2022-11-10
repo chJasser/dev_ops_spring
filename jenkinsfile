@@ -24,20 +24,20 @@ pipeline {
             }
 
         }
-        /*stage('JUNIT/MOCKITO') {
+        stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
             }
 
-        }*/
-      /* stage('sonar') {
+        }
+       stage('sonar') {
             steps{
             	 sh '''
                  mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
                  '''
             	 }
-        }*/
+        }
       /* stage('nexus_Stage') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
@@ -60,13 +60,13 @@ pipeline {
               }
         }*/
        
-          stage('Docker-compose') {
+         /* stage('Docker-compose') {
             steps {
                 echo 'start container'
-                sh 'docker-compose up'
+                sh 'docker-compose up -d'
                
             }
-        }
+        }*/
       //  stage('Docker hub push') {
         //   steps {
           //      script {
