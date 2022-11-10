@@ -23,7 +23,7 @@ pipeline{
         }
         stage('Code Analysis with SonarQube') {
             steps{
-                sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://192.168.100.4:9000 -Dsonar.login=479b5ea07cbdda7d2067ed13798c59def42cd188'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=479b5ea07cbdda7d2067ed13798c59def42cd188'
             }
         }
         stage('Publish to Nexus'){
