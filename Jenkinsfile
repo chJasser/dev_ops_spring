@@ -17,6 +17,7 @@ pipeline {
     	   	steps{
     	   	     sh '''
                  mvn clean
+                 pwd
                 '''
     	   	}
     	}
