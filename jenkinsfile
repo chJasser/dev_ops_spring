@@ -34,7 +34,6 @@ pipeline {
        stage('sonar') {
             steps{
             	 sh '''
-                 mvn  -Dmaven.test.skip=true install 
                  mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
                  '''
             	 }
