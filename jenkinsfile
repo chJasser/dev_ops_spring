@@ -24,7 +24,7 @@ pipeline {
             }
 
         }
-        stage('JUNIT/MOCKITO') {
+     /*   stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
@@ -37,18 +37,18 @@ pipeline {
                  mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
                  '''
             	 }
-        }
-       stage('Nexus') {
+        }*/
+      /* stage('Nexus') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
                                    
 
                     	   	}
 
-                    }
+                    }*/
      
 
-  stage('buildimage/pushdockerhub') {
+ /* stage('buildimage/pushdockerhub') {
 
               steps {
                         script {
@@ -59,7 +59,7 @@ pipeline {
                               sh 'docker logout'    
                           }
               }
-        }
+        }*/
        
           stage('Docker-compose') {
             steps {
