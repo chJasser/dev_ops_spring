@@ -43,7 +43,7 @@ services:
       - bored-network
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3310/$MYSQLDB_DATABASE?useSSL=false",
+        "spring.datasource.url"  : "jdbc:mysql://192.168.149.48:3310/$MYSQLDB_DATABASE?useSSL=false",
         "spring.datasource.username" : "$MYSQLDB_USER",
         "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
