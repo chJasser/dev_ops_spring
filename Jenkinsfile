@@ -98,6 +98,7 @@ pipeline {
               }
         }
 
+*/
         stage('docker_run') {
                            	steps{
                     	   	     sh '''
@@ -107,7 +108,6 @@ pipeline {
 
           }
 
-*/
 
  //stages end
    }
