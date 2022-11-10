@@ -31,6 +31,13 @@ pipeline{
         		sh 'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
         	}
         }
+        stage('Build Docker Image'){
+            steps {
+                script{
+        			sh 'docker image build -t 22653116/devops_cicd .'
+                }
+            }
+        }
         /*stage('docker_run') {
             steps{
                 sh '''

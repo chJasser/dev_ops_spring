@@ -88,6 +88,7 @@
                 <version>3.1.0</version>
             </plugin>
 		</plugins>
+		<finalName>devops_cicd</finalName>
 	</build>
 	<distributionManagement>
 		<repository>

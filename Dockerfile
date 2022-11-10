@@ -1,5 +1,4 @@
-FROM maven:3.8.2-jdk-8
-WORKDIR /spring-app
-COPY . .
-RUN mvn clean install -Dmaven.test.skip=true
-CMD mvn spring-boot:run
+FROM openjdk:11
+EXPOSE 8089
+ADD target/devops_cicd.jar devops_cicd.jar
+ENTRYPOINT ["java","-jar","devops_cicd.jar"]
