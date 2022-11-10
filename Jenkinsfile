@@ -51,7 +51,12 @@ pipeline{
         stage('docker-compose') {
             steps{
                 sh 'docker-compose up -d'
+            }
+        }
+        stage('UNIT Test'){
+             steps{
+                 sh 'mvn test'
+             }
         }
     }
-}
 }
