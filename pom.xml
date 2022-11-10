@@ -148,11 +148,11 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
-                        <phase>test-compile</phase>
+
                     </execution>
                     <execution>
                         <id>jacoco-site</id>
-                        <phase>verify</phase>
+
                         <goals>
                             <goal>report</goal>
                         </goals>
