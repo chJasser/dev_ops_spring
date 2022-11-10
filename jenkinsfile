@@ -38,35 +38,36 @@ pipeline {
                  '''
             	 }
         }
-      /* stage('nexus_Stage') {
+       stage('Nexus') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
                                    
 
                     	   	}
 
-                       }*/
+                    }
      
 
-  /*stage('build_push_image') {
+  stage('build_push_image') {
 
               steps {
                         script {
                               def dockerImage = docker.build("fakher14/tpachat")
-                            //  docker.withRegistry('','registryCredential'){
-                              //           dockerImage.push("latest")
-                               //}
+                              docker.withRegistry('','registryCredential'){
+                                       dockerImage.push("latest")
+                               }
+                              sh 'docker logout'    
                           }
               }
-        }*/
+        }
        
-         /* stage('Docker-compose') {
+          stage('Docker-compose') {
             steps {
                 echo 'start container'
                 sh 'docker-compose up -d'
                
             }
-        }*/
+        }
       //  stage('Docker hub push') {
         //   steps {
           //      script {
