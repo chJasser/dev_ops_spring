@@ -48,11 +48,10 @@ pipeline{
                 }
              }
          }
-        stage('docker_run') {
+        stage('docker-compose') {
             steps{
-                sh '''
-                    docker-compose up -d
-                   '''
+                sh 'docker-compose up -d'
         }
     }
+}
 }
