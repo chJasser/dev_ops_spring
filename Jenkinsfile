@@ -102,7 +102,7 @@ pipeline {
         stage('docker_run') {
                            	steps{
                     	   	     sh '''
-                                   docker-compose up
+                                   docker-compose up -d
                                    '''
                     	   	}
 
