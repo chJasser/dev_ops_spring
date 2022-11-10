@@ -28,7 +28,7 @@ services:
     stdin_open: true
     tty: true
 networks:
-  spring-network:
-    name: spring-network
+  bored-network:
+    name: bored-network
 volumes: 
   .m2:
