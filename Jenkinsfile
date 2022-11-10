@@ -42,9 +42,10 @@ pipeline{
              steps {
                 script{
                      withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerpwd')]){
-                     sh 'docker login -u 22653116 -p ${dockerpwd}'
-                }
+                        sh 'docker login -u 22653116 -p ${dockerpwd}'
+                    }
                      sh 'docker push 22653116/devops_cicd'
+                }
              }
          }
         /*stage('docker_run') {
