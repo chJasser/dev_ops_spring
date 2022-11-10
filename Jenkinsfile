@@ -26,6 +26,11 @@ pipeline{
                 sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://192.168.100.4:9000 -Dsonar.login=479b5ea07cbdda7d2067ed13798c59def42cd188'
             }
         }
+        stage('Publish to Nexus'){
+            steps {
+        		sh 'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
+        	}
+        }
         /*stage('docker_run') {
             steps{
                 sh '''
