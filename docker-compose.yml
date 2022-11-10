@@ -11,18 +11,21 @@ services:
       - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
-      - $MYSQLDB_DOCKER_PORT:$MYSQLDB_LOCAL_PORT
+      - "3310:3306"
     volumes:
       - db:/var/lib/mysql
 
   angular-app:
     image: alaabenfradj/front:latest
+    container_name: front_c
     depends_on:
       - tpachat
     networks:
       - bored-network
     ports:
       - "4200:4200"
+    volumes:
+      - fv:/var/lib/fv
 
   tpachat:
     depends_on:
@@ -35,7 +38,7 @@ services:
     restart: on-failure
     env_file: ./.env
     ports:
-      - $SPRING_DOCKER_PORT:$SPRING_LOCAL_PORT
+      - "8089:8089"
     networks:
       - bored-network
     environment:
@@ -56,3 +59,4 @@ networks:
 volumes:
   db:
   .m2:
+  fv:
