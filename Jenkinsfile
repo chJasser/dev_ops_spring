@@ -1,62 +1,79 @@
 pipeline{
-    agent any
-    tools {
-        maven 'M2_HOME'
+agent any
+
+        stages{
+        stage('Compile Maven Project'){
+                                                                     steps{
+                                                                        sh 'mvn  compile '
+                                                                     }
+                                                                 }
+ stage('Mock & JUnit') {
+ steps {
+script {
+sh 'echo "Mock & JUnit"'
+sh 'mvn test'
+ }
+ }
+ post {
+  always {
+junit '**/target/surefire-reports/TEST-*.xml'
+   }
+  }
+ }
+    stage('MVN SONARQUBE ')
+              {
+     steps{
+ sh  'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar  '
+  }
     }
 
-    stages {
-        stage('Getting project from Git') {
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/Oussama']], extensions: [], userRemoteConfigs: [[credentialsId: 'Mygithub', url: 'https://github.com/chJasser/dev_ops_spring.git']]])
-            }
-        }
-        stage('Cleaning the project') {
-            steps{
-                sh 'mvn -B -DskipTests clean'
-            }
-        }
+  stage('Build Maven Spring'){
+  steps{
+ sh 'mvn  clean install '
+   }
+  }
 
-        stage('Artifact Construction') {
-            steps{
-                sh 'mvn -B -DskipTests package'
-            }
-        }
-        stage('Code Analysis with SonarQube') {
-            steps{
-                sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=479b5ea07cbdda7d2067ed13798c59def42cd188'
-            }
-        }
-        stage('Publish to Nexus'){
-            steps {
-        		sh 'mvn clean deploy -Dmaven.test.skip=true -Dresume=false'
-        	}
-        }
-        stage('Build Docker Image'){
-            steps {
-                script{
-        			sh 'docker image build -t 22653116/devops_cicd .'
-                }
-            }
-        }
-        stage('Push Image to Docker Hub'){
-             steps {
-                script{
-                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerpwd')]){
-                        sh 'docker login -u 22653116 -p ${dockerpwd}'
-                    }
-                     sh 'docker push 22653116/devops_cicd'
-                }
-             }
+  stage('NEXUS')
+ {
+  steps{
+        echo "nexus"
+       sh ' mvn deploy -DskipTests'
          }
-        stage('docker-compose') {
-            steps{
-                sh 'docker-compose up -d'
-            }
-        }
-        stage('UNIT Test'){
-             steps{
-                 sh 'mvn test'
-             }
-        }
-    }
+       }
+
+ stage('Build docker image'){
+ steps{
+ script{
+ sh 'docker build -t 22653116/devops_cicd .'
+ }
+ }
+ }
+
+ stage('Docker login') {
+
+ steps {
+ sh 'echo "login Docker ...."'
+sh 'docker login -u 22653116 -p Medoussema777'
+  }  }
+ stage('Docker push') {
+ steps {
+ sh 'echo "Docker is pushing ...."'
+sh 'docker push 22653116/devops_cicd'
+ }  }
+ stage('Docker compose') {
+  steps {
+   sh 'docker-compose up -d'
+  }  } }
+post {
+ success {
+	 mail to: "mohamed.braiek@esprit.tn",
+	subject: "Pipeline Backend Success ",
+ 	body: "Welcome to DevOps project Backend : Success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
 }
+	failure {
+          mail to: "mohamed.braiek@esprit.tn",
+           subject: "Pipeline backend Failure",
+           body: "Welcome to DevOps project Backend : Failure on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL} "
+                    }
+                    }
+      }
