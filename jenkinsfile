@@ -48,7 +48,7 @@ pipeline {
                     }
      
 
-  stage('build_push_image') {
+  stage('buildimage/pushdockerhub') {
 
               steps {
                         script {
