@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/*package com.esprit.examen.services;
 
 import com.esprit.examen.entities.CategorieFournisseur;
 import com.esprit.examen.entities.Fournisseur;
@@ -44,7 +44,7 @@ public class FournisseurServiceImpTest {
         }
     };
 
-    @Test
+   @Test
     @Order(1)
     void testAddSecteurActivites() {
         secteurActivitesList.forEach(s -> {
@@ -97,4 +97,4 @@ public class FournisseurServiceImpTest {
         assertEquals(0, iSecteurActiviteService.retrieveAllSecteurActivite().size());
     }
 
-}
+}*/
