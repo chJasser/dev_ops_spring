@@ -24,13 +24,13 @@ pipeline {
             }
 
         }
-     /*   stage('JUNIT/MOCKITO') {
+       stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
             }
 
-        }*/
+        }
        stage('sonar') {
             steps{
             	 sh '''
