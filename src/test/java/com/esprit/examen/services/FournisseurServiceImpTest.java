@@ -21,8 +21,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@ExtendWith(SpringExtension.class)
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @Slf4j
 public class FournisseurServiceImpTest {
