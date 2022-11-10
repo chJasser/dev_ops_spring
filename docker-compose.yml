@@ -15,17 +15,17 @@ services:
     volumes:
       - db:/var/lib/mysql
 
-      #angular-app:
-      # image: alaabenfradj/front:latest
-      #container_name: front_c
-      #depends_on:
-      # - tpachat
-      #networks:
-      # - bored-network
-      #ports:
-      # - "4200:4200"
-      #volumes:
-      # - fv:/var/lib/fv
+  angular-app:
+    image: alaabenfradj/front:latest
+    container_name: front_c
+    depends_on:
+      - tpachat
+    networks:
+      - bored-network
+    ports:
+      - "4200:4200"
+    volumes:
+      - fv:/var/lib/fv
 
   tpachat:
     depends_on:
