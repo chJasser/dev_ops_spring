@@ -30,14 +30,15 @@ pipeline {
 
             }
 
-        }
+        }*/
        stage('sonar') {
             steps{
             	 sh '''
+                 mvn  -Dmaven.test.skip=true install 
                  mvn sonar:sonar -Dsonar.login='admin' -Dsonar.password='fakher'
                  '''
             	 }
-        }*/
+        
       /* stage('Nexus') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
@@ -61,25 +62,14 @@ pipeline {
               }
         }*/
        
-          stage('Docker-compose') {
+      /*    stage('Docker-compose') {
             steps {
                 echo 'start container'
                 sh 'docker-compose up'
                
             }
-        }
-      //  stage('Docker hub push') {
-        //   steps {
-          //      script {
-            //        echo "Docker push"
-              //  withCredentials([string(credentialsId: 'tpachat', variable: 'docker')]) {
-                //       sh 'docker login -u fakher14 -p ${docker}'
-                  //     sh 'docker push fakher14/tpachat:latest'
-                    //   sh 'docker logout'
-               //    }
-              // }
-         //  }
-      //  }
+        }*/
+    
        
 
 
