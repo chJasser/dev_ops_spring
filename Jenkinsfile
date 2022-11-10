@@ -23,14 +23,14 @@ pipeline{
         }
         stage('Code Analysis with SonarQube') {
             steps{
-                sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://192.168.100.5:9000 -Dsonar.login=3df97c19697716a184165358dfc1be9f90f295fa'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://192.168.100.4:9000 -Dsonar.login=479b5ea07cbdda7d2067ed13798c59def42cd188'
             }
         }
-        stage('docker_run') {
+        /*stage('docker_run') {
             steps{
                 sh '''
                     docker-compose up -d
                    '''
-        }
+        }*/
     }
 }
