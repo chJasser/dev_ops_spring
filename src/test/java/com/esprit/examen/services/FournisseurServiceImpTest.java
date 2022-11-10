@@ -76,7 +76,7 @@ public class FournisseurServiceImpTest {
                 () -> assertEquals(fournisseur1.getLibelle(), fournisseur.getLibelle()),
                 () -> assertEquals(fournisseur1.getCategorieFournisseur(), fournisseur.getCategorieFournisseur())
         );
-        assertEquals(fournisseur1.getSecteurActivites().size(), 2);
+        assertEquals(2,fournisseur1.getSecteurActivites().size());
         assertEquals(1, fournisseurRepository.count());
         log.info("Fournisseur added successfully");
 

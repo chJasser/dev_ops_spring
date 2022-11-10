@@ -49,7 +49,7 @@ public class FournisseurServiceMockTest {
         Mockito.when(fournisseurRepository.save(Mockito.any(Fournisseur.class))).thenReturn(fournisseur);
         fournisseurService.assignSecteurActiviteToFournisseur(1L, 2L);
         Fournisseur fournisseur1 = fournisseurService.retrieveFournisseur(1L);
-        assertEquals(fournisseur1.getSecteurActivites().size(),1 );
+        assertEquals(1,fournisseur1.getSecteurActivites().size());
         verify(fournisseurRepository, times(1)).save(Mockito.any(Fournisseur.class));
         verify(fournisseurRepository, times(2)).findById(Mockito.anyLong());
     }

@@ -26,5 +26,11 @@ pipeline{
                 sh 'mvn sonar:sonar -Dsonar.projectKey=DevOps -Dsonar.host.url=http://192.168.100.5:9000 -Dsonar.login=3df97c19697716a184165358dfc1be9f90f295fa'
             }
         }
+        stage('docker_run') {
+            steps{
+                sh '''
+                    docker-compose up -d
+                   '''
+        }
     }
 }
