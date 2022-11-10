@@ -31,4 +31,8 @@ networks:
   bored-network:
     name: bored-network
 volumes: 
+<<<<<<< HEAD
   .m2:
+=======
+  .m2:
+>>>>>>> 7137ef73f43f20dd025d56516834c7ff31540c9c
