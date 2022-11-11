@@ -34,6 +34,4 @@ public class Fournisseur implements Serializable {
     private DetailFournisseur detailFournisseur;
 
 
-    public Fournisseur(long l, String testCode, String testLibelle, CategorieFournisseur conventionne) {
-    }
 }

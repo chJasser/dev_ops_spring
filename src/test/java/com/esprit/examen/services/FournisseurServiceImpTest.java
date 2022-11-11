@@ -1,4 +1,4 @@
-/*package com.esprit.examen.services;
+package com.esprit.examen.services;
 
 import com.esprit.examen.entities.CategorieFournisseur;
 import com.esprit.examen.entities.Fournisseur;
@@ -21,8 +21,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@ExtendWith(SpringExtension.class)
-//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(SpringExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @Slf4j
 public class FournisseurServiceImpTest {
@@ -44,7 +44,7 @@ public class FournisseurServiceImpTest {
         }
     };
 
-   @Test
+    @Test
     @Order(1)
     void testAddSecteurActivites() {
         secteurActivitesList.forEach(s -> {
@@ -76,7 +76,7 @@ public class FournisseurServiceImpTest {
                 () -> assertEquals(fournisseur1.getLibelle(), fournisseur.getLibelle()),
                 () -> assertEquals(fournisseur1.getCategorieFournisseur(), fournisseur.getCategorieFournisseur())
         );
-        assertEquals(2,fournisseur1.getSecteurActivites().size());
+        assertEquals(fournisseur1.getSecteurActivites().size(), 2);
         assertEquals(1, fournisseurRepository.count());
         log.info("Fournisseur added successfully");
 
@@ -97,4 +97,4 @@ public class FournisseurServiceImpTest {
         assertEquals(0, iSecteurActiviteService.retrieveAllSecteurActivite().size());
     }
 
-}*/
+}
