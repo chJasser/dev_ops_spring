@@ -24,15 +24,11 @@ pipeline {
                 sh 'mvn test'
             }
         }
-//        stage('install') {
-//            steps {'sh mvn clean install'
-//            }
-//        }
         stage('SonarQube analysis') {
             steps {
 
                 withSonarQubeEnv('sonarqube') {
-                    sh 'mvn  sonar:sonar'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
