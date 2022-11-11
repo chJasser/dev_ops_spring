@@ -4,7 +4,7 @@
     <groupId>com.esprit.examen</groupId>
     <artifactId>tpAchatProject</artifactId>
     <name>tpAchatProject</name>
-    <version>2.0-SNAPSHOT</version>
+    <version>3.0-RELEASE</version>
     <description>tpAchatProject</description>
     <modelVersion>4.0.0</modelVersion>
     <distributionManagement>

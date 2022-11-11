@@ -1,11 +1,11 @@
 pipeline {
     agent any
     environment {
-        TAG = '2.0'
+        TAG = '3.0'
     }
     stages {
 
-        stage('maven clean') {
+      /*  stage('maven clean') {
             steps {
                 echo 'maven clean'
                 sh 'mvn  clean'
@@ -16,7 +16,7 @@ pipeline {
                 echo "build project"
                 sh 'mvn -Dmaven.test.skip=true   package'
             }
-        }
+        }*/
 
         stage('maven test') {
             steps {
@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-      stage('deploy to nexus') {
+     /* stage('deploy to nexus') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true deploy'
             }
@@ -73,7 +73,7 @@ pipeline {
                     sh 'docker-compose ps'
                 }
             }
-        }
+        }*/
 //
 //        stage('clean install') {
 //            steps {
