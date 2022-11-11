@@ -65,7 +65,7 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('docker compose') {
+        stage('run containers') {
             steps {
                 script {
                     echo "Docker build image"
