@@ -24,6 +24,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
+//        stage('maven clean install') {
+//            steps {
+//                echo 'maven clean install'
+//                sh 'mvn clean install'
+//            }
+//        }
         stage('SonarQube analysis') {
             steps {
 
@@ -59,7 +65,7 @@ pipeline {
                 }
             }
         }
-        stage('docker build ') {
+        stage('docker compose') {
             steps {
                 script {
                     echo "Docker build image"
