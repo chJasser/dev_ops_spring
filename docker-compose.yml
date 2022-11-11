@@ -12,7 +12,7 @@ services:
       - AppNet
 
   spring-boot:
-    image: 22653116/springprojet
+    image: 22653116/devops_cicd
     container_name: spring
     ports:
       - 8089:8089
