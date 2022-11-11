@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>com.esprit.examen</groupId>
     <artifactId>tpAchatProject</artifactId>
-    <name>tpAchatProject</name>
-    <version>3.0-RELEASE</version>
+    <name>tpAchat</name>
+    <version>3.0-SNAPSHOT</version>
     <description>tpAchatProject</description>
     <modelVersion>4.0.0</modelVersion>
     <distributionManagement>
@@ -129,11 +129,7 @@
                 <version>3.1.0</version>
             </plugin>
 
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
-            </plugin>
+
 
             <plugin>
                 <groupId>org.jacoco</groupId>
