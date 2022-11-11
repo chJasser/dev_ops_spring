@@ -5,20 +5,18 @@ pipeline {
     }
     stages {
 
-//        stage('maven clean') {
-//            steps {
-//                echo 'maven clean'
-//                sh 'mvn  clean'
-//            }
-//        }
-//
-//
-//        stage('maven build') {
-//            steps {
-//                echo "build project"
-//                sh 'mvn -Dmaven.test.skip=true   package'
-//            }
-//        }
+        stage('maven clean') {
+            steps {
+                echo 'maven clean'
+                sh 'mvn  clean'
+            }
+        }
+        stage('maven build') {
+            steps {
+                echo "build project"
+                sh 'mvn -Dmaven.test.skip=true   package'
+            }
+        }
 
         stage('maven test') {
             steps {
@@ -38,7 +36,7 @@ pipeline {
                 }
             }
         }
-      /*  stage('deploy to nexus') {
+      stage('deploy to nexus') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true deploy'
             }
@@ -73,7 +71,7 @@ pipeline {
                     sh 'docker-compose ps'
                 }
             }
-        }*/
+        }
 //
 //        stage('clean install') {
 //            steps {
