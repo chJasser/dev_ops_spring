@@ -24,13 +24,13 @@ pipeline {
             }
 
         }
-      /* stage('JUNIT/MOCKITO') {
+       stage('JUNIT/MOCKITO') {
             steps {
                 sh 'mvn test'
 
             }
 
-        }*/
+        }
        stage('sonar') {
             steps{
             	 sh '''
@@ -38,17 +38,17 @@ pipeline {
                  '''
             	 }
         }
-      /* stage('Nexus') {
+       stage('Nexus') {
                            	steps{
                     	   	     sh 'mvn -Dmaven.test.skip=true deploy'
                                    
 
                     	   	}
 
-                    }*/
+                    }
      
 
- /*stage('buildimage/push') {
+ stage('buildimage/push') {
 
               steps {
                         script {
@@ -59,9 +59,9 @@ pipeline {
                               sh 'docker logout'    
                           }
               }
-        }*/
+        }
        
-       /*   stage('Docker-compose') {
+          stage('Docker-compose') {
             steps {
                 echo 'start container'
                 sh 'docker-compose up -d'
@@ -71,7 +71,7 @@ pipeline {
     
        
 
-}*/
+}
     }
    
 
