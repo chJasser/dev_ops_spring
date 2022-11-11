@@ -1,24 +1,24 @@
 pipeline {
     agent any
     environment {
-        TAG = '1.2'
+        TAG = '2.0'
     }
     stages {
 
-        stage('maven clean') {
-            steps {
-                echo 'maven clean'
-                sh 'mvn  clean'
-            }
-        }
-
-
-        stage('maven build') {
-            steps {
-                echo "build project"
-                sh 'mvn -Dmaven.test.skip=true   package'
-            }
-        }
+//        stage('maven clean') {
+//            steps {
+//                echo 'maven clean'
+//                sh 'mvn  clean'
+//            }
+//        }
+//
+//
+//        stage('maven build') {
+//            steps {
+//                echo "build project"
+//                sh 'mvn -Dmaven.test.skip=true   package'
+//            }
+//        }
 
         stage('maven test') {
             steps {
@@ -26,6 +26,10 @@ pipeline {
                 sh 'mvn test'
             }
         }
+//        stage('install') {
+//            steps {'sh mvn clean install'
+//            }
+//        }
         stage('SonarQube analysis') {
             steps {
 
@@ -34,12 +38,12 @@ pipeline {
                 }
             }
         }
-        stage('deploy to nexus') {
+      /*  stage('deploy to nexus') {
             steps {
                 sh 'mvn -Dmaven.test.skip=true deploy'
             }
         }
-      stage('build docker image') {
+        stage('build docker image') {
             steps {
                 script {
                     echo "Docker build image"
@@ -48,19 +52,19 @@ pipeline {
                 }
             }
         }
-        stage('Docker hub push') {
-          steps {
-              script {
-                  echo "Docker push"
-                  withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                      sh 'docker login -u chjasser -p ${dockerhubpwd}'
+        stage('push docker hub') {
+            steps {
+                script {
+                    echo "Docker push"
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                        sh 'docker login -u chjasser -p ${dockerhubpwd}'
 //                        dockerImage.push()
-                      sh 'docker push ${REGISTRY}:${TAG}'
-                      sh 'docker logout'
-                  }
-              }
-          }
-      }
+                        sh 'docker push ${REGISTRY}:${TAG}'
+                        sh 'docker logout'
+                    }
+                }
+            }
+        }
         stage('docker build ') {
             steps {
                 script {
@@ -69,7 +73,7 @@ pipeline {
                     sh 'docker-compose ps'
                 }
             }
-        }
+        }*/
 //
 //        stage('clean install') {
 //            steps {
@@ -78,11 +82,6 @@ pipeline {
 //
 //            }
 //        }
-
-
-
-
-
 
 
 /*
