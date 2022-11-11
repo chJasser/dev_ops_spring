@@ -5,66 +5,66 @@ pipeline {
     }
     stages {
 
-      /*  stage('maven clean') {
-            steps {
-                echo 'maven clean'
-                sh 'mvn  clean'
-            }
-        }
-        stage('maven build') {
-            steps {
-                echo "build project"
-                sh 'mvn -Dmaven.test.skip=true   package'
-            }
-        }*/
-
-        stage('maven test') {
-            steps {
-                echo 'unit test'
-                sh 'mvn test'
-            }
-        }
+//        stage('maven clean') {
+//            steps {
+//                echo 'maven clean'
+//                sh 'mvn  clean'
+//            }
+//        }
+//        stage('maven build') {
+//            steps {
+//                echo "build project"
+//                sh 'mvn -Dmaven.test.skip=true   package'
+//            }
+//        }
+//
+//        stage('maven test') {
+//            steps {
+//                echo 'unit test'
+//                sh 'mvn test'
+//            }
+//        }
 //        stage('maven clean install') {
 //            steps {
 //                echo 'maven clean install'
 //                sh 'mvn clean install'
 //            }
 //        }
-        stage('SonarQube analysis') {
-            steps {
-
-                withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
-        }
-     /* stage('deploy to nexus') {
-            steps {
-                sh 'mvn -Dmaven.test.skip=true deploy'
-            }
-        }
-        stage('build docker image') {
-            steps {
-                script {
-                    echo "Docker build image"
-                    dockerImage = docker.build("${REGISTRY}:${TAG}")
-                    //  sh 'docker build -t tpachatproject -f Dockerfile .'
-                }
-            }
-        }
-        stage('push docker hub') {
-            steps {
-                script {
-                    echo "Docker push"
-                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                        sh 'docker login -u chjasser -p ${dockerhubpwd}'
-//                        dockerImage.push()
-                        sh 'docker push ${REGISTRY}:${TAG}'
-                        sh 'docker logout'
-                    }
-                }
-            }
-        }
+//        stage('SonarQube analysis') {
+//            steps {
+//
+//                withSonarQubeEnv('sonarqube') {
+//                    sh 'mvn sonar:sonar'
+//                }
+//            }
+//        }
+//      stage('deploy to nexus') {
+//            steps {
+//                sh 'mvn -Dmaven.test.skip=true deploy'
+//            }
+//        }
+//        stage('build docker image') {
+//            steps {
+//                script {
+//                    echo "Docker build image"
+//                    dockerImage = docker.build("${REGISTRY}:${TAG}")
+//                    //  sh 'docker build -t tpachatproject -f Dockerfile .'
+//                }
+//            }
+//        }
+//        stage('push docker hub') {
+//            steps {
+//                script {
+//                    echo "Docker push"
+//                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+//                        sh 'docker login -u chjasser -p ${dockerhubpwd}'
+////                        dockerImage.push()
+//                        sh 'docker push ${REGISTRY}:${TAG}'
+//                        sh 'docker logout'
+//                    }
+//                }
+//            }
+//        }
         stage('docker compose') {
             steps {
                 script {
@@ -73,7 +73,7 @@ pipeline {
                     sh 'docker-compose ps'
                 }
             }
-        }*/
+        }
 //
 //        stage('clean install') {
 //            steps {
